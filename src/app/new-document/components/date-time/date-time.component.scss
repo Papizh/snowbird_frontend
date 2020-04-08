@@ -1,0 +1,36 @@
+.DateTime{
+  display: flex;
+  mat-form-field{
+    width: auto;
+    /deep/ .mat-form-field-underline {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+  .date-time{
+    display: flex;
+    align-items: center;
+    margin-left: 45px;
+    label{
+      font-size: 0.7em;
+      margin: 0 8px;
+      cursor: pointer;
+      &.bold{
+        font-weight: bold;
+      }
+    }
+    mat-slide-toggle.pattern{
+      position: static;
+    }
+  }
+  &.previewMode{
+    .date-time{
+      display: none;
+    }
+  }
+}
+input{
+  opacity: 0;
+}
+.pos-abs{
+  position: absolute;
+}

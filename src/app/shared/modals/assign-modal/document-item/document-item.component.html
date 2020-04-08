@@ -1,0 +1,8 @@
+<div class="document">
+  <img [ngClass]="{
+      'regular-document': document.documentType == 'REGULAR_DOCUMENT',
+      'complaint-document': document.documentType != 'REGULAR_DOCUMENT'
+    }" alt="Document">
+  <span class="titleName" [title]="document.title">{{document.title}}</span>
+  <p *ngIf="isOrdered" class="document-checked">{{document.orderInAssignment}}</p>
+</div>

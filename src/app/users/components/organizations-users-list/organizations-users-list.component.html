@@ -1,0 +1,40 @@
+<div class="organizations">
+  <mat-card class="organizations-items border"
+            [ngClass]="{'one-item': oneOrganization || organizationList.length === 1}"
+            *ngFor="let item of organizationList; let index = index">
+    <div>
+      <span class="title" 
+        *ngIf="!oneOrganization">
+        {{item?.organization?.name}}</span>
+      <div class="organizations-items-user">
+
+        <app-user-item
+          *ngFor="let user of item.users; let index = index"
+          [ngStyle]="{'display': index > item.limit-1 && !oneOrganization && item?.organization?.name 
+                    ? 'none': 'inline-block'}"
+          [index]="index"
+          [user]="user"
+          (deleteUserEmit)="deleteUser(user)"
+          (editUserEmit)="editUser($event)">
+        </app-user-item>
+        <div class="show-more" 
+          (click)="showMore(item, 0, 10)" 
+          *ngIf="item?.organization?.name && item?.users?.length > LIMIT && !oneOrganization">
+          <mat-icon class="anim-rotate" svgIcon="plus" color="accent"></mat-icon>
+          <label>Show more</label>
+        </div>
+        <label class="no-users" 
+          *ngIf="!item.users || !item?.users?.length"
+        >No users found</label>
+      </div>
+    </div>
+    <mat-paginator
+      *ngIf="organizationList && oneOrganization"
+      [length]="usersCounter"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onGetCurrentOrganization(item, $event.pageIndex, $event.pageSize)">
+    </mat-paginator>
+  </mat-card>
+</div>

@@ -1,0 +1,31 @@
+<div class="Ranking" cdkDropListGroup>
+  <div class="ranking-config"
+    [cdkDropListDisabled]="!previewMode"
+    cdkDropList
+    #rankingList="cdkDropList"
+    [cdkDropListData]="questions"
+    (cdkDropListDropped)="dropRank($event)">
+    <mat-form-field 
+      cdkDrag cdkDragLockAxis="y" 
+      cdkDragBoundary=".ranking-area" 
+      *ngFor="let item of questions; let index = index" 
+      [ngClass]="{'deleted': item.delete,
+                  'previewMode': previewMode}"
+      class="question-input ranking-area">
+      <i class="icon icon-ranking"></i>
+      <!-- [disabled]="previewMode" -->
+      <input matInput 
+        placeholder="Enter a ranking choice" 
+        [disabled]="previewMode"
+        [(ngModel)]="item.answerText" name="answer"
+        (focus)="onFocus(index, questions)">
+      <i class="icon icon-close"
+        *ngIf="questions.length > 1"
+        (click)="onRemove.emit(index);$event.stopPropagation()"></i>
+      <!-- <i *ngIf="!previewMode" class="icon icon-move" cdkDragHandle></i> -->
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <span class="rank">{{index + 1}}</span>
+    </mat-form-field>
+  </div>
+</div>
+ 

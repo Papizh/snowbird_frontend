@@ -1,0 +1,79 @@
+mat-form-field.shape-select{
+    width: 43%;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.stars-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &.previewMode{
+
+        /deep/ .mat-form-field-label-wrapper {
+            visibility: hidden;
+        }
+        .shape-select{
+            display: none;
+        }
+        .stars-config{
+            display: flex;
+            width: 100%;
+            margin-left: -20px;
+            justify-content: center;
+            mat-form-field{
+                width: 20%;
+                cursor: pointer;
+                &.gray{
+                    opacity: 0.6;
+                    filter: grayscale(95%) brightness(120%);
+                }
+            }
+            .icon-close{
+                display: none;
+            }
+        }
+    }
+}
+.stars-config{
+    mat-form-field{
+        position: relative;
+        margin-top: -5px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        pointer-events: all;
+        &:hover{
+            .icon-close{
+                opacity: 0.6;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .icon-close{
+            z-index: 10;
+            position: absolute;
+            left: -26px;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .icon-shape{
+            margin-top: 4px;
+            margin-right: 0;
+        }
+    }
+}
+.icon-dropdown{
+    position: absolute;
+    top: 7px;
+    right: -1px;
+    opacity: 0.7;
+}
+/deep/  {
+    .mat-form-field-wrapper {
+        padding-bottom: 1em;
+    }
+}

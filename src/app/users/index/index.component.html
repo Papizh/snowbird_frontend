@@ -1,0 +1,54 @@
+<div class="content-header">
+  <i class="icon icon-back back" 
+      *ngIf="isOneOrganization" (click)="goBack()" 
+  ></i>
+  <i class="icon icon-search"></i>
+  <mat-form-field class="example-full-width">
+    <input (keyup)="userTerm$.next($event.target.value)" matInput placeholder="Search users by last name">
+  </mat-form-field>
+</div>
+<div class="content-wrapper">
+  <div class="organizations" *ngIf="userRole ==='ROLE_ADMINISTRATOR'">
+    <div class="organizations-list"
+      appScrollDirective (onScroll)="getMoreOrganizations()">
+      <h2 *ngIf="!usersList">Users not found</h2>
+      <app-organizations-users-list
+        *ngIf="usersList"
+        [oneOrganization]="isOneOrganization"
+        [organizationList]="usersList"
+        [usersCounter]="usersCounter"
+        (onGetOrganization)="getCurrentOrganization($event)"
+      ></app-organizations-users-list>
+    </div>
+    <app-create class="border"
+      (createNew)="openCreateUserDialog($event)"
+      [actionName]="'Invite user'"
+    ></app-create>
+  </div>
+  <div class="organizations" *ngIf="userRole === 'ROLE_ORGANIZATION_MODERATOR'">
+    <div class="organizations-list">
+      <h2 *ngIf="!usersList">Users not found</h2>
+      <app-organizations-users-list
+        *ngIf="usersList"
+        [oneOrganization]="isOneOrganization"
+        [organizationList]="usersList"
+        [usersCounter]="usersCounter"
+        (onGetOrganization)="getCurrentOrganization($event)"
+        (deleteEmitter)="deleteUser($event)"
+        (editUser)="editUser($event)"
+      ></app-organizations-users-list>
+      <mat-paginator *ngIf="usersList"
+                     class="border"
+                     [length]="usersCounter"
+                     [pageSize]="pageSize"
+                     [pageIndex]="pageIndex"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="nullUserList($event.pageIndex,$event.pageSize)">
+      </mat-paginator>
+    </div>
+    <app-create class="border"
+                (createNew)="openCreateUserDialog($event)"
+                [actionName]="'Invite user'"
+    ></app-create>
+  </div>
+</div>

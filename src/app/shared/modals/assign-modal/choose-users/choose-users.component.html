@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="content-header">
+    <div class="assign-header">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Search by last name"
+               (keyup)="usersSearch$.next($event.target.value)">
+      </mat-form-field>
+      <button mat-dialog-close>
+        <i class="icon icon-close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content-wrapper-modal"
+       appScrollDirective (onScroll)="loadNextPage.emit()">
+    <div class="users-list">
+      <app-user-item 
+        *ngFor="let user of usersList" 
+        [user]="user"
+        (click)="toggleItemInArray(user)"
+      ></app-user-item>
+    </div>
+    <div class="btn-group">
+      <button class="assign-btn"
+        (click)="previousStep.emit({ step: 0 })"
+        mat-raised-button color="accentLight"
+      >Back</button>
+      <button class="assign-btn" 
+        (click)="nextStep()" 
+        [disabled]="isDisabled()"
+        mat-raised-button color="primary"
+      >Add users</button>
+    </div>
+  </div>
+</div>

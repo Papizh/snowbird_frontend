@@ -1,0 +1,69 @@
+<div class="wrapper">
+  <div class="content-header">
+    <i class="icon icon-search"></i>
+    <mat-form-field class="example-full-width">
+      <input (keyup)="documentTerm$.next($event.target.value)" 
+        matInput 
+        [(ngModel)]="searchDocument" name="search_document"
+        placeholder="Search documents">
+    </mat-form-field>
+  </div>
+  <div class="content-wrapper">
+    <div class="documents">
+      <div class="documents-tabs border">
+        <div class="documents-tabs-wrapper">
+          <mat-tab-group
+            (selectedIndexChange)="onTabChange($event)"
+            dynamicHeight>
+            <mat-tab label="Regular Documents">
+              <div class="documents-list">
+                <app-documents-list
+                  [noneIcon]="true"
+                  (editDoc)="editDocument($event)"
+                  (assignDoc)="assignDocument($event)"
+                  (deleteDoc)="deleteDocument($event)"
+                  [docList]="documents"
+                ></app-documents-list>
+              </div>
+            </mat-tab>
+            <mat-tab label="Complaints">
+              <div class="documents-list">
+                <app-documents-list
+                  [noneIcon]="true"
+                  (assignDoc)="assignDocument($event)"
+                  (deleteDoc)="deleteDocument($event)"
+                  (editDoc)="editDocument($event)"
+                  [docList]="documents"
+                ></app-documents-list>
+              </div>
+            </mat-tab>
+            <mat-tab label="Complaints results">
+              <div class="documents-list">
+                <app-documents-list
+                  [noneIcon]="false"
+                  (editDoc)="editDocument($event)"
+                  (assignDoc)="assignDocument($event)"
+                  (deleteDoc)="deleteDocument($event)"
+                  [docList]="documents"
+                ></app-documents-list>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <mat-paginator
+          *ngIf="tabChanging"
+          [length]="documentsLength"
+          [pageSize]="pageSize"
+          [pageIndex]="pageIndex"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="getDocumentList(searchDocument, $event.pageIndex, $event.pageSize, currentTabType)">
+        </mat-paginator>
+      </div>
+      <app-create
+        class="border"
+        [actionName]="actionName"
+        (createNew)="redirectToNewDocument()"
+      ></app-create>
+    </div>
+  </div>
+</div>

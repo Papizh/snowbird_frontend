@@ -1,0 +1,37 @@
+<div class="pass" *ngIf="document">
+  <p class="title-document ellipsis">
+    <i class="icon icon-back" onclick="window.history.go(-1); return false;"></i>
+    {{document.title}}
+  </p>
+  <label *ngIf="document.documentInfo.documentType === DocumentType.COMPLAINT && documentPass"
+    class="uuid">
+    <span class="uuid__title">uuid:</span>
+    <input type="text" readonly [value]="documentPass.uuid" #uuid>
+    <i class="icon icon-copy" (click)="copyClipboard(uuid)"></i>
+  </label>
+  <mat-card class="pass__item question previewMode"
+    *ngFor="let question of document.questions; let index = index"
+    id="{{'question-' + index}}" >
+    <span 
+      class="required-label" 
+      *ngIf="question.required">
+      Required
+    </span>
+    <label>{{(index + 1) + ". " + question.questionText}}</label>
+
+    <app-document 
+      *ngIf="documentPass?.questionAnswers && hasQuestionAnswers(index)"
+      [type]="question.type"
+      [question]="question"
+      (next)="next(index)"
+      [resultMode]="true"
+      [answers]="documentPass.questionAnswers[index]"
+      [last]="index == (document.questions.length - 1)">
+    </app-document>
+
+    <label 
+      *ngIf="!documentPass?.questionAnswers || !hasQuestionAnswers(index)"
+      class="no-answers"
+    >No answers</label>
+  </mat-card>
+</div>

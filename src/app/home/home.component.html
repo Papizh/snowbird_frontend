@@ -1,0 +1,79 @@
+<div class="wrapper">
+  <div class="content-header">
+    <button class="login-padding assign"
+            mat-raised-button color="accentLight"
+            (click)="redirectToCreateDocument()"
+    >New document
+    </button>
+    <button class="login-padding assign"
+            (click)="assignDocument()"
+            mat-raised-button color="primary"
+    >Assign document
+    </button>
+  </div>
+  <div class="content-wrapper">
+    <div class="info">
+      <div class="info-container border " *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']">
+        <span class="title">Documents</span>
+        <div class="info-documents">
+          <app-documents-list
+            (editDoc)="editDocument($event)"
+            [docList]="regularDocs"
+            [noneIcon]="true"
+          ></app-documents-list>
+        </div>
+        <a
+          [routerLink]="['/main/documents']"
+          class="more-link">
+          <i class="icon icon-more"></i>more
+        </a>
+      </div>
+
+      <div class="info-container  info-users border"
+           *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']">
+        <span class="title">Users</span>
+        <app-user-item
+          *ngFor="let user of usersList; let index = index"
+          [index]="index"
+          [user]="user"
+        ></app-user-item>
+        <a [routerLink]="['/main/users']"
+           class="more-link">
+          <i class="icon icon-more"></i>more
+        </a>
+      </div>
+    </div>
+
+    <div class="info second-row">
+      <div class="border" *appHasRole="['ROLE_ADMINISTRATOR']">
+        <span class="title">Organizations</span>
+        <app-organization
+          *ngIf="!!organization"
+          [organization]="organization">
+        </app-organization>
+        <a [routerLink]="['/main/organizations']"
+           class="more-link">
+          <i class="icon icon-more"></i>more</a>
+      </div>
+      <app-create class="border " *appHasRole="['ROLE_ADMINISTRATOR']"
+                  (createNew)="openCreateOrganizationDialog($event)"
+                  [actionName]="'Create organization'"
+      ></app-create>
+      <app-create class="border" [ngClass]="{'moder': userRole ==='ROLE_ORGANIZATION_MODERATOR'}"
+                  *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']"
+                  [actionName]="'Create document'"
+                  (createNew)="redirectToCreateDocument()"
+      ></app-create>
+      <app-create class="border" [ngClass]="{'moder': userRole ==='ROLE_ORGANIZATION_MODERATOR'}"
+                  *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']"
+                  (createNew)="openCreateUserDialog($event)"
+                  [actionName]="'Invite user'"
+      ></app-create>
+    </div>
+  </div>
+</div>
+
+
+
+
+

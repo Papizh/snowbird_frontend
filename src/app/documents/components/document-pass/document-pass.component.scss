@@ -1,0 +1,106 @@
+@import "../../../../assets/styles/variables";
+
+
+.pass{
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+    background: #fff;
+    padding: calc(40vh - 250px) 20px calc(40vh - 225px);
+    height: 98vh;
+    overflow-y: auto;
+    &__item{
+        margin: 15px 0;
+        padding: 30px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        transition: all 0.2s ease-in-out;
+        box-shadow: none;
+        border: none;
+        position: relative;
+
+        //invisible
+        opacity: 0.08;
+        transform: scale(0.9);
+        pointer-events: none;
+        filter: grayscale(100%) blur(4px);
+        z-index: 1;
+
+
+        &.visible{
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+            filter: grayscale(0%) blur(0px);
+            z-index: 999;
+            /deep/ .valid-next {
+                visibility: visible;
+            }
+        }
+        
+        /deep/ .valid-next {
+            visibility: hidden;
+        }
+        label{
+            font-weight: bold;
+            margin: 0 0 30px; 
+            display: block;
+        }
+        .required-label{
+            margin: 0px 0 20px;
+            background: #ededed;
+            padding: 3px 6px;
+            font-size: 0.5em;
+            letter-spacing: 1px;
+            color: #757575;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-right: auto;
+        }
+ 
+    }
+    .done-quiz{
+        margin: 0 auto;
+        width: 150px;
+        border-radius: 20px;
+        padding: 3px;
+        display: block;
+        margin-top: 20%;
+    }
+    .title-document{
+        font-size: 27px;
+        font-weight: bold;
+        color: $main-color;
+        text-transform: capitalize;
+        margin: 10px 0px 130px;
+        .time{
+            color: #e6e9ed;
+            font-size: 0.3em;
+        }
+    }
+    &-wrapper{
+        height: auto;
+        position: relative;
+        .pass-score{
+            width: 95%;
+            height: 10px;
+            background: #fff;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            .score{
+                height: 100%;
+                background: #e6e9ed;
+                width: 0%;
+                display: block;
+                transition: width 0.3s linear;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }    
+}

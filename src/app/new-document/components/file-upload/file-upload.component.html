@@ -1,0 +1,23 @@
+<div class="FileUpload">
+  <div class="pass-edit-mode"
+    *ngIf="passingMode">
+    <app-answer-validation 
+      [fieldValidation]="questions[0].fieldValidation"
+      (changeValidation)="updateFileUploadSettings($event)"
+    ></app-answer-validation>
+    <angular-file-uploader
+      (ApiResponse)="onDocUpload($event)"
+      [config]="afuConfig">
+    </angular-file-uploader>
+  </div>
+  <div class="pass-mode"
+    *ngIf="!passingMode">
+    <ul>
+      <li *ngFor="let item of getFiles(answers[0].text); let index = index">
+        <a class="list-item" (click)="startDownloading(index, item)">
+          <i class="icon icon-download"></i>{{item}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

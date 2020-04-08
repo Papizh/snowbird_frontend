@@ -1,0 +1,34 @@
+<div class="Multiple-textboxes">
+
+  <div class="multiple-config" 
+    *ngFor="let item of questions; let index = index"
+    [ngClass]="{'deleted': item.delete}">
+
+    <app-answer-validation 
+      [fieldValidation]="item.fieldValidation"
+      [validate]="answers[index].text"
+      (onValid)="trackValid($event, item)"
+    ></app-answer-validation>
+
+    <mat-form-field class="row-label question-input">
+      <textarea matInput rows="3"
+        [disabled]="previewMode"
+        placeholder="Enter a row label" 
+        [(ngModel)]="item.answerText" name="textbox"
+        (focus)="onFocus(index, questions)"></textarea>
+      <i class="icon icon-close"
+        *ngIf="questions.length > 1" 
+        (click)="onRemove.emit(index);$event.stopPropagation()"></i>
+    </mat-form-field>
+
+    <mat-form-field class="grey-section">
+      <textarea matInput rows="3"
+        [disabled]="!previewMode"  
+        [(ngModel)]="answers[index].text"
+        [ngClass]="{'invalid-field': !item.valid,
+                    'previewMode': previewMode}"
+        placeholder="Your answer"
+      ></textarea>
+    </mat-form-field>
+  </div>
+</div>

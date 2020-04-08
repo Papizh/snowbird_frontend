@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+  <div class="assignments-wrapper">
+    <h2>Assignments</h2>
+    <div class="assignments"
+      appScrollDirective (onScroll)="loadNextPage()">
+
+      <mat-card *ngIf="!assignments || !assignments.length">
+        <span *appHasRole="['ROLE_SIMPLE_USER']" 
+          class="no-assignments-wrapper"
+        >Sorry, you don’t have any assigned documents yet</span>
+        <span *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']" 
+          class="no-assignments-wrapper"
+        >This user doesn’t has any assigned documents yet </span>
+      </mat-card>
+
+      <mat-card class="assignment"
+                *ngFor="let assignment of assignments">
+        <span class="title">{{assignment.name}}</span>
+        <div class="document"
+             *ngFor="let document of assignment.documentAnswers; let index = index"
+             (click)="goToDocumentView(document)"
+             [ngClass]="{'done': document.published,
+                         'lock': document.lock}">
+          <div class="document-icon"
+            [ngClass]="{'ready': !document.fullness}">
+            <img [ngClass]="{
+              'regular-document': document.documentType == DocumentType.REGULAR_DOCUMENT,
+              'complaint-document': document.documentType != DocumentType.REGULAR_DOCUMENT
+            }" alt="Document">
+          </div>
+          <div class="document-progress">
+            <img
+              *ngIf="document.fullness == 100"
+              src="/assets/img/checked.svg" alt="checked">
+            <img class="lock"
+              src="/assets/img/lock.png" alt="lock">
+            <app-circle-chart
+              *ngIf="document.published && document.fullness < 100"
+              [index]="getUniqueIndex(assignment.id, document.documentId, index)"
+              [value]="document.fullness"
+              [width]="50"
+            ></app-circle-chart>
+          </div>  
+          <span class="titleName" [title]="document.documentName"
+          >{{document.documentName}}</span>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

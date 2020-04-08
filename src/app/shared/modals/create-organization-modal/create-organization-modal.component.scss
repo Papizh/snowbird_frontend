@@ -1,0 +1,37 @@
+@import "~src/assets/styles/variables";
+
+.create{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &-name{
+    font-size: 35px;
+    color: $main-color;
+    align-self: center;
+    margin-bottom: 40px;
+  }
+  button:first-child{
+    border: none;
+    background: none;
+    align-self: flex-end;
+  }
+  span{
+
+  }
+  mat-form-field{
+    margin-bottom: 40px;
+    position: relative;
+    span{
+      position: absolute;
+      top: 36px;
+      left: 0;
+      font-size: 12px;
+      color: #d50000;
+    }
+  }
+  button:last-child{
+    align-self: center;
+    padding: 0 40px;
+    border-radius: 20px;
+  }
+}

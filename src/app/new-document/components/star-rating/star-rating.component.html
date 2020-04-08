@@ -1,0 +1,27 @@
+<div class="stars-wrapper" [ngClass]="{'previewMode': previewMode}">
+  <div class="stars-config">
+    <mat-form-field 
+      *ngFor="let item of questions; let index = index" 
+      class="question-input"
+      [ngClass]="{'gray': index > rating, 'deleted': item.delete}"
+      (click)="onClick(index)">
+      <input matInput
+        [disabled]="previewMode"
+        [(ngModel)]="item.answerText" name="star"
+        placeholder="Enter a label" 
+        (focus)="onFocus(index, questions)">
+      <i class="icon icon-shape icon-{{shapes[questions[0].startPoint]}}"></i>
+      <i class="icon icon-close"
+        *ngIf="questions.length > 1" 
+        (click)="onRemove.emit(index);$event.stopPropagation()"></i>
+    </mat-form-field>
+  </div>
+  <mat-form-field class="shape-select">
+    <mat-select [(value)]="questions[0].startPoint" placeholder="Choose shape"
+      (selectionChange)="changeSelection()">
+      <mat-option *ngFor="let shape of shapes; let index = index" [value]="index">
+        {{shape}} <i class="icon icon-shape icon-{{shape}}"></i>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

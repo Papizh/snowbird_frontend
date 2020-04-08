@@ -1,0 +1,23 @@
+.answer-validation{
+    margin-bottom: -5px;
+    display: flex;
+    mat-form-field{
+        width: 100px;
+        margin: 0 10px;
+        transform: scale(0.85)
+    }
+    .example-additional-selection {
+        opacity: 0.75;
+        font-size: 0.75em;
+    }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

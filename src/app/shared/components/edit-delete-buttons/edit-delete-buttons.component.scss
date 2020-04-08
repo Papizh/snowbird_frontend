@@ -1,0 +1,25 @@
+span{
+  height: 17px;
+  width: 17px;
+  display: inline-block;
+  background: url('/assets/icons/edit.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 1px;
+  &.delete {
+    height: 15px;
+    width: 15px;
+    background:  url('/assets/icons/delete.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.7;
+  }
+}  
+.buttons{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}

@@ -1,0 +1,16 @@
+<div class="container">
+  <form [formGroup]="registerOrganization" class="create">
+    <button mat-dialog-close>
+      <i class="icon icon-close"></i>
+    </button>
+    <span class="create-name">Create Organization</span>
+    <mat-form-field class="example-full-width">
+      <mat-label>Organization Name</mat-label>
+      <input
+        formControlName="name"
+        matInput placeholder="Organization Name">
+      <mat-error  *ngIf="registerOrganization.touched && registerOrganization.invalid">This field is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <button class="assign-btn" [disabled]="registerOrganization.invalid" (click)="createOrganization()" mat-raised-button color="primary">Create</button>
+  </form>
+</div>

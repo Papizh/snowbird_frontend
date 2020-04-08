@@ -1,0 +1,41 @@
+@import "~src/assets/styles/variables";
+
+.invite{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &-name{
+    font-size: 35px;
+    color: $main-color;
+    align-self: center;
+    margin-bottom: 40px;
+  }
+  button:first-child{
+    border: none;
+    background: none;
+    align-self: flex-end;
+  }
+  .example-full-width{
+    width: 100%;
+  }
+  mat-form-field{
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+    span{
+      position: absolute;
+      top: 36px;
+      left: 0;
+      font-size: 12px;
+      color: #d50000;
+    }
+  }
+  button:last-child{
+    align-self: center;
+    padding: 0 40px;
+    border-radius: 20px;
+  }
+}
+.no-clickable{
+  pointer-events: none;
+}

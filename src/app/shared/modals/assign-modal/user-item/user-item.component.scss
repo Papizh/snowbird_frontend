@@ -1,0 +1,35 @@
+@import "~src/assets/styles/variables";
+
+.user{
+    position: relative;
+    width: 96px;
+    margin: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{
+      width: 90%;
+      opacity: 0.25;
+    }
+    .icon-checked{
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      margin: 0;
+    }
+    &-checked{
+      position: absolute;
+      top: 35px;
+      left: calc(50% - 20px);
+      display: flex;
+      width: 40px;
+      flex-direction: column;
+      align-items: center;
+      span{
+        font-size: 50px;
+        color: $main-color;
+        margin-top: 10px;
+      }
+    }
+  }

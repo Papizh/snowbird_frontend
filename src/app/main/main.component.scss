@@ -1,0 +1,13 @@
+mat-drawer-container {
+  height: 100vh;
+}
+mat-drawer{
+  background-color: #f7f9fa;
+  box-shadow: 4px 2px 40px 13px #e3e3f6a2;
+  z-index: 2;
+}
+mat-drawer-content{
+  background: #f5f7fb;
+  overflow: auto;
+  height: 100vh;
+}

@@ -1,0 +1,45 @@
+<mat-card>
+  <aside>
+    <mat-list>
+      <h1 class="aside-title">{{title | uppercase}}</h1>
+      <mat-list-item *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']" routerLink="home"
+                     routerLinkActive="active"
+                     aria-label="color"
+      >
+        <mat-icon svgIcon="home" color="accent"></mat-icon>
+        Home
+      </mat-list-item>
+      <mat-list-item *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']" routerLink="documents" routerLinkActive="active">
+        <mat-icon svgIcon="doc" color="accent"></mat-icon>
+        Documents
+      </mat-list-item>
+      <mat-list-item *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']" routerLink="users" routerLinkActive="active">
+        <mat-icon svgIcon="user" color="accent"></mat-icon>
+        Users
+      </mat-list-item>
+      <mat-list-item 
+        *appHasRole="['ROLE_ADMINISTRATOR']" 
+        routerLink="organizations" 
+        routerLinkActive="active">
+        <mat-icon svgIcon="org" color="accent"></mat-icon>
+        Organizations
+      </mat-list-item>
+      <mat-list-item
+        *appHasRole="['ROLE_SIMPLE_USER']"
+        routerLink="/main/users/profile/assignments"
+        routerLinkActive="active">
+        <mat-icon svgIcon="doc" color="accent"></mat-icon>
+        Assignments
+      </mat-list-item>
+      <mat-list-item 
+        *appHasRole="['ROLE_SIMPLE_USER']" 
+        routerLink="/main/users/profile" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon svgIcon="info" color="accent"></mat-icon>
+        Profile
+      </mat-list-item>
+    </mat-list>
+    <button class="login-padding logout" (click)="logOut()" mat-raised-button color="primary">Log out</button>
+  </aside>
+</mat-card>

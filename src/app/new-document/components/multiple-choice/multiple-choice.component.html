@@ -1,0 +1,37 @@
+<div class="multiple-config"
+     *ngFor="let item of questions; let index = index"
+     [ngClass]="{'deleted': item.delete,
+              'previewMode': previewMode}">
+  <mat-radio-group
+    [(ngModel)]="radioValue"
+    (change)="trackValid()">
+    <mat-checkbox
+      *ngIf="type === 'checkbox'"
+      [color]="'primary'"
+      [disabled]="!previewMode"
+      [(ngModel)]="answersBool[index]"
+      (change)="trackValid()"
+    ></mat-checkbox>
+    <mat-radio-button
+      *ngIf="type === 'radio'"
+      [color]="'primary'"
+      [value]="item.answerText"
+      [disabled]="!previewMode"
+    ></mat-radio-button>
+    <mat-form-field class="question-input" 
+      [ngClass]="{'mat-form-field-invalid': !item.valid && item.answerText}" >
+      <input matInput
+            [disabled]="previewMode"
+            placeholder="Enter a row label"
+            [(ngModel)]="item.answerText" name="textbox"
+            (focus)="onFocus(index, questions)"
+            (change)="isQuestionValid(event)"
+            required
+      >
+      <i class="icon icon-close"
+         *ngIf="questions.length > 1"
+         (click)="onRemove.emit(index);$event.stopPropagation()"
+      ></i>
+    </mat-form-field>
+  </mat-radio-group>
+</div>

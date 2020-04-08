@@ -1,0 +1,106 @@
+<div class="question-body"
+  [ngClass]="{'previewMode': previewMode}"
+  *ngIf="questions[0]"
+  [ngSwitch]="type">
+
+  <div *ngSwitchCase="QuestionType.SINGLE_TEXTBOX">
+    <app-single-textbox
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-single-textbox>
+  </div>
+  <div *ngSwitchCase="QuestionType.COMMENT_BOX">
+    <app-comment-box
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-comment-box>
+  </div>
+  <div *ngSwitchCase="QuestionType.MULTIPLE_TEXTBOXES" class="MultipleTextboxes">
+    <app-multiple-textboxes
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion(); pushNewAnswer();"
+      (onRemove)="removeAnswer($event)"
+    ></app-multiple-textboxes>
+  </div>
+  <div *ngSwitchCase="QuestionType.MULTIPLE_CHOICE" class="MultipleChoices">
+    <app-multiple-choice
+      [type]="'radio'"
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-multiple-choice>
+  </div>
+  <div *ngSwitchCase="QuestionType.CHECKBOXES" class="MultipleChoices">
+    <app-multiple-choice
+      [type]="'checkbox'"
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-multiple-choice>
+  </div>
+  <div *ngSwitchCase="QuestionType.SLIDER" class="Slider">
+    <app-slider
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)">
+    </app-slider>
+  </div>
+  <div *ngSwitchCase="QuestionType.DATE_TIME" class="DateTime">
+    <app-date-time
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)">
+    </app-date-time>
+  </div>
+  <div *ngSwitchCase="QuestionType.FILE_UPLOAD" class="FileUpload">
+    <app-file-upload
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers">
+    </app-file-upload>
+  </div>
+  <div *ngSwitchCase="QuestionType.DROPDOWN" class="Dropdown">
+    <app-dropdown
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)">
+    </app-dropdown>
+  </div>
+  <div *ngSwitchCase="QuestionType.STAR_RATING" class="StarRating">
+    <app-star-rating
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-star-rating>
+  </div>
+  <div *ngSwitchCase="QuestionType.RANKING" class="Ranking">
+    <app-ranking
+      [previewMode]="previewMode"
+      [questions]="questions"
+      [answers]="answers"
+      (onPush)="pushNewQuestion()"
+      (onRemove)="removeAnswer($event)"
+    ></app-ranking>
+  </div>
+  
+</div>

@@ -1,0 +1,148 @@
+@font-face {
+	font-family: "Icons";
+	font-style: normal;
+	font-weight: 500;
+	src: url("assets/fonts/Mateo.woff") format("woff");
+}
+
+i.icon{
+    display: inline-block;
+    position: relative;
+    margin-right: 7px;
+    &:before, &:after{
+        font-family: Icons;
+        display: inline-block;
+        font-size: 15px;
+        font-style: normal;
+
+    }
+    &.icon-choices::before{
+        content: "l";
+    }
+    &.icon-checkboxes::before{
+        content: "j";
+    }
+    &.icon-stars::before{
+        content: "S";
+    }
+    &.icon-upload::before{
+        content: "c";
+    }
+    &.icon-one-line::before{
+        content: "Å";
+    }
+    &.icon-multilines::before{
+        content: "w";
+    }
+    &.icon-dropdown::before{
+        content: "¦";
+    }
+    &.icon-ranking::before{
+        content: "´";
+    }
+    &.icon-slider::before{
+        content: "²";
+    }
+    &.icon-textboxes::before{
+        content: "½";
+    }
+    &.icon-datetime::before{
+        content: "\\";
+    }
+    &.icon-star{
+        &::after{
+            content: "Š";
+            color: rgb(236, 205, 26);
+        }
+        // &::before{s
+        //     content: "Š";
+        // }
+    }
+    
+    &.icon-cancel::before{
+        content: "-";
+    }
+    &.icon-thumb::before{
+        content: "Ï";
+        color: rgb(9, 30, 150);
+    }
+    &.icon-heart::before{
+        content: "Ù";
+        color: rgb(175, 10, 10);
+    }
+    &.icon-smile::before{
+        content: "Ă";
+        color: rgb(32, 160, 0);
+    }
+    &.icon-plus::before{
+        content: "+";
+    }
+    &.icon-checkbox::before{
+        content: "j";
+    }
+    &.icon-move{
+        width: 30px;
+        height: 30px;
+        background: url('assets/icons/move.png');
+        background-size: cover;
+    }
+    &.icon-more{
+        width: 20px;
+        height: 20px;
+        background: url('assets/icons/more.png');
+        background-size: cover;
+    }
+    &.icon-search{
+        width: 25px;
+        height: 25px;
+        background: url('assets/icons/search.png');
+        background-size: cover;
+    }
+    &.icon-checked{
+        width: 20px;
+        height: 20px;
+        background: url('assets/img/checked.png');
+        background-size: 120% 120%;
+        background-position: center;
+    }
+    &.icon-close{
+        width: 25px;
+        height: 25px;
+        background: url('assets/icons/plus.svg');
+        background-size: cover;
+        background-position: center;
+        transform: rotate(45deg);
+        opacity: 0.4;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.7;
+            transform: scale(1.15) rotate(135deg);
+        }
+    }
+    &.icon-back{
+        width: 23px;
+        height: 23px;
+        margin-right: 10px;
+        opacity: 0.5;
+        background: url('assets/img/back.svg');
+        background-size: cover;
+        transition: opacity 0.3s ease-in;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+    &.icon-download{
+        width: 15px;
+        height: 15px;
+        background: url('assets/icons/download.png');
+        background-size: cover;
+    }
+    &.icon-copy{
+        width: 16px;
+        height: 15px;
+        background: url('assets/icons/copy.png');
+        background-size: cover;
+    }
+}

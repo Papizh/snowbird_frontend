@@ -1,0 +1,53 @@
+@import "~src/assets/styles/variables";
+
+.content{
+  position: relative;
+  padding-bottom: 57px;
+}
+.content-header{
+  .assign-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mat-form-field{
+      width: 60%;
+    }
+    button{
+      border: none;
+      background: none;
+    }
+  }
+}
+
+.users-list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+.user-buttons /deep/ .height-30{
+  height: 30px;
+  width: 30px;
+}
+.user-buttons /deep/ .height-36{
+  height: 36px;
+  width: 36px;
+}
+.btn-group{
+  width: 100%;
+  text-align: right;
+  padding: 15px 15px 15px;
+  background: #fff;
+  box-shadow: 5px 2px 16px #e8e8e8;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  .assign-btn{
+    border-radius: 20px;
+    padding: 0 50px;
+    margin: 0px 5px;
+    cursor: pointer;
+  }
+}

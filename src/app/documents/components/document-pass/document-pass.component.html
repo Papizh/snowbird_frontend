@@ -1,0 +1,37 @@
+<div class="pass-wrapper">
+  <div class="pass-score">
+    <span class="score" 
+      [ngStyle]="{'width': score + '%'}"></span>
+  </div>
+
+  <div class="pass" *ngIf="document" (scroll)="changes($event)">
+    <p class="title-document ellipsis">
+      <i class="icon icon-back" onclick="window.history.go(-1); return false;"></i>
+      {{document.title}}
+    </p>
+    <mat-card class="pass__item question previewMode" opacity
+      *ngFor="let question of document.questions; let index = index"
+      id="{{'question-' + index}}" >
+      <span 
+        class="required-label" 
+        *ngIf="question.required">
+        Required
+      </span>
+      <label>{{(index + 1) + ". " + question.questionText}}</label>
+  
+      <app-document 
+        [type]="question.type"
+        [question]="question"
+        (next)="next(index)"
+        [answers]="documentPass.questionAnswers[index]"
+        [last]="index == (document.questions.length - 1)">
+      </app-document>
+    </mat-card>
+  
+    <button class="done-quiz"
+      [disabled]="isUnasweredSomeRequiredQuestion() || isSomeQuestionWithInvalidAnswers()"
+      (click)="finishQuiz()" 
+      mat-raised-button color="primary"
+    >Done</button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="login-container">
+  <mat-card class="example-card">
+    <mat-card-header class="login-title main-text-color">
+      <mat-card-title>Access Your Account</mat-card-title>
+    </mat-card-header>
+    <div class="login-inputs">
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+          <mat-card-content>
+          <mat-form-field class="width-100" appearance="outline">
+            <mat-label>Email address</mat-label>
+            <input matInput placeholder="Enter email"  [formControl]="loginForm.controls['email']">
+            <mat-error *ngIf="loginForm.controls['email'].hasError('pattern') && !loginForm.controls['email'].hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="width-100" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter password" [formControl]="loginForm.controls['password']">
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('minlength') &&
+             !loginForm.controls['password'].hasError('required')"
+            >Password must have <strong>min 6 characters</strong>
+            </mat-error>
+          </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="login-button">
+          <button [disabled]="loginForm.invalid" class="login-padding"  mat-raised-button color="primary" >Log in</button>
+        </div>
+      </mat-card-actions>
+        </form>
+    </div>
+  </mat-card>
+</div>

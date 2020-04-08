@@ -1,0 +1,29 @@
+<div class="documents-list">
+  <div class="document"
+       *ngFor="let document of docList"
+  >
+    <app-edit-delete-buttons
+      *ngIf="noneIcon"
+      [edit]="true"
+      [delete]="true"
+      (deleteEmitter)="deleteDocument(document)"
+      (editEmitter)="editDocument(document)"
+    ></app-edit-delete-buttons>
+    <img (click)="editDocument(document)" [ngClass]="{
+            'regular-document': document.documentType == DocumentType.REGULAR_DOCUMENT,
+            'complaint-document': document.documentType != DocumentType.REGULAR_DOCUMENT
+          }" [alt]="document.title || document.documentName ||  'No name'">
+
+    <label class="titleName" [title]="document.title || document.documentName">
+      {{document.title || document.documentName || 'No name'}}</label>
+    <span class="sub-title"
+          *ngIf="document.userName"
+          [title]="document.userName"
+    >{{document.userName}}</span>
+    <span class="organizationName"
+          *ngIf="document.organizationName"
+          [title]="document.organizationName"
+    >{{document.organizationName}}</span>
+    <label class="global" *ngIf="document.global" (click)="editDocument(document)">Global</label>
+  </div>
+</div>

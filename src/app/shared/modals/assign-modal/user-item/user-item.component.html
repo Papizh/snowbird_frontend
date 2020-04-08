@@ -1,0 +1,6 @@
+<div class="user">
+  <img src="/assets/icons/person.jpg" alt="grey">
+  <span class="titleName" [title]="user.firstName + ' ' + user.lastName">{{user.firstName + ' ' + user.lastName}}</span>
+  <span class="sub-title">{{user.organizationName || 'No organiz.'}}</span>
+  <i *ngIf="user.selected" class="icon icon-checked"></i>
+</div>

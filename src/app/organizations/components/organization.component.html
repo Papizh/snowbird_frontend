@@ -1,0 +1,10 @@
+<mat-card *ngIf="organization" class="organization">
+  <app-edit-delete-buttons
+    [edit]="false"
+    [delete]="true"
+    (editEmitter)="editOrganizations($event)"
+    (deleteEmitter)="deleteOrganizations(organization)"
+  ></app-edit-delete-buttons>
+  <img mat-card-image class="org" alt="user">
+  <label class="titleName" [title]="organization.name">{{organization.name}}</label>
+</mat-card>

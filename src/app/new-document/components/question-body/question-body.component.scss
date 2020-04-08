@@ -1,0 +1,27 @@
+.question-body{
+    .StarRating{
+        position: relative;
+        display: flex;
+        app-star-rating{
+            width: 100%;
+            display: block;
+        }
+    }
+    &.previewMode{
+        i.icon.icon-close {
+            visibility: hidden;
+        }
+        .multiple-config{
+            .row-label{
+                /deep/ {
+                    .mat-form-field-label{
+                        opacity: 0.5;
+                        &:not(.mat-empty){
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

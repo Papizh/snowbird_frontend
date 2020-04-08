@@ -1,0 +1,86 @@
+@import "../../../../assets/styles/variables";
+
+.pass{
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+    padding: 30px 10px;
+    height: 98vh;
+    overflow-y: auto;
+    
+    &__item{
+        margin: 5px 0;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+
+        label{
+            font-weight: bold;
+            margin: 0 0 30px; 
+            display: block;
+        }
+        .no-answers{
+            text-align: center;
+            padding: 4px;
+            opacity: 0.4;
+            font-weight: bold;
+        }
+        .required-label{
+            margin: 0px 0 20px;
+            background: #ededed;
+            padding: 3px 6px;
+            font-size: 0.5em;
+            letter-spacing: 1px;
+            color: #757575;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-right: auto;
+        }
+    }
+    .title-document{
+        font-size: 30px;
+        font-weight: bold;
+        color: $main-color;
+        text-transform: capitalize;
+        margin: 10px 0px 40px;
+    }
+    .uuid{
+        margin-bottom: 50px;
+        background: rgba(128, 128, 128, 0.1);
+        padding: 4px 8px;
+        display: inline-block;
+        font-size: 15px;
+        border-radius: 10px;
+        &__title{
+            margin-right: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        input{
+            background: transparent;
+            border: none;
+            width: 350px;
+        }
+        .icon-copy{
+            opacity: 0.4;
+            transition: opacity 0.3s ease-in-out;
+            top: 2px;
+            display: inline-block;
+            margin: 0 3px;
+            pointer-events: all!important;
+            cursor: pointer;
+        }
+        &:hover {
+            .icon-copy{
+                opacity: 0.8;
+            }
+        }
+    }
+    app-document, /deep/ *:not(.title-document):not(.icon-back),{
+        pointer-events: none!important;
+        cursor: not-allowed;
+    }
+}

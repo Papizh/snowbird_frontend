@@ -1,0 +1,46 @@
+<div class="content">
+  <div class="content-header">
+    <div class="assign-header">  
+      <h2><span>Assignment:</span>{{assignmentName}}</h2>
+      <button mat-dialog-close>
+        <i class="icon icon-close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content-wrapper-modal-confirm">
+    <h3 class="title">USERS</h3>
+    <div class="users-list">
+      <div class="users-list-scroll">
+        <app-user-item
+          [ngClass]="{'not-clickable': onlyAssign}"
+          *ngFor="let user of usersList"
+          [user]="user"
+          (click)="onDeleteItem(user)"
+        ></app-user-item>
+      </div>
+    </div>
+    <h3 class="title">DOCUMENTS</h3>
+    <div class="documents-list">
+      <div class="documents-list-scroll"
+         cdkDropList
+         cdkDropListOrientation="horizontal"
+         (cdkDropListDropped)="drop($event)">
+        <app-document-item
+          cdkDrag
+          *ngFor="let document of updatedDocumentsList; let i = index"
+          [document]="document"
+          [isOrdered]="updatedDocumentsList.includes(document)"
+        ></app-document-item>
+      </div>
+    </div>
+  </div>
+  <div class="assign-btn">
+    <button (click)="previousStep.emit({ step: 2 })"
+            mat-raised-button color="accentLight"
+    >Back</button>
+    <button mat-raised-button color="primary"
+      (click)="confirmAssigning()"
+      [disabled]="isDisabled()"
+    >Finish assignment</button>
+  </div>
+</div>

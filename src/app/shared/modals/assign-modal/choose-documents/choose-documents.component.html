@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="content-header">
+    <div class="assign-header">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Search by title"
+               (keyup)="documentSearch$.next($event.target.value)">
+      </mat-form-field>
+      <button mat-dialog-close>
+        <i class="icon icon-close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="content-wrapper-modal"
+       appScrollDirective (onScroll)="loadNextPage.emit(documentsName)">
+    <div class="documents-list">
+      <app-document-item
+        *ngFor="let document of currentDocumentsList"
+        (click)="toggleDocument(document)"
+        [document]="document"
+        [isOrdered]="updatedDocumentsList.includes(document)"
+      ></app-document-item>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button class="assign-btn"
+      (click)="previousStep.emit({ step: 1 })"
+      mat-raised-button color="accentLight"
+    >Back</button>
+    <button class="assign-btn" 
+      (click)="nextStep()"
+      mat-raised-button color="primary"
+      [disabled]="isDisabled()"
+    >Assign documents</button>
+  </div>
+</div>

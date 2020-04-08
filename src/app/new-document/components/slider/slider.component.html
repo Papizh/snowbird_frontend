@@ -1,0 +1,23 @@
+<div class="Slider">
+  <div *ngIf="!previewMode" class="slider-config">
+    <mat-form-field class="example-margin">
+      <input matInput type="number" placeholder="Min value" required
+            [(ngModel)]="questions[0].startPoint" name="startPoint">
+    </mat-form-field>
+    <mat-form-field class="example-margin">
+      <input matInput type="number" placeholder="Max value" required
+            [(ngModel)]="questions[0].endPoint" name="endPoint">
+    </mat-form-field>
+    <mat-form-field class="example-margin">
+      <input matInput type="number" placeholder="Step size" min="1" [max]="questions[0].endPoint"
+            [(ngModel)]="questions[0].placeOrder" name="step">
+    </mat-form-field>
+  </div>
+  <mat-slider
+    [min]="questions[0].startPoint"
+    [max]="questions[0].endPoint"
+    [thumbLabel]="true"
+    [step]="questions[0].placeOrder"
+    [(ngModel)]="answers[0].rating"
+  ></mat-slider>
+</div>

@@ -1,0 +1,17 @@
+<div class="Comment-box">
+    <app-answer-validation 
+        [fieldValidation]="questions[0].fieldValidation"
+        [validate]="answers[0].text"
+        (onValid)="trackValid($event)"
+    ></app-answer-validation>
+    <mat-form-field class="grey-section">
+        <textarea 
+            matInput
+            [ngClass]="{'invalid-field': !questions[0].valid,
+                        'previewMode': previewMode}"
+            rows="3" [disabled]="!previewMode"
+            [(ngModel)]="answers[0].text" name="answer"
+            placeholder="Your answer"
+        ></textarea>
+    </mat-form-field>
+</div>

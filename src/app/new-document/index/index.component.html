@@ -1,0 +1,141 @@
+<div class="document-new">
+  <form cdkDropListGroup #documentForm="ngForm" #documentFormElement  >
+    <mat-card class="question__wrapper">
+      <div class="form-header">
+        <h3 *ngIf="previewMode ellipsis" class="title">{{document.title || "No title"}}</h3>
+        <mat-form-field class="edit-title"
+                        *ngIf="!previewMode && document"
+                        [ngClass]="{'previewMode': previewMode}">
+          <input class="question__main"
+                 required
+                 ngModel maxlength="255"
+                 [(ngModel)]="document.title" name="title"
+                 matInput placeholder="Title">
+        </mat-form-field>
+        <div class="control-layer">
+          <div class="type-of-documents">
+            <label (click)="toggleDocumentType(false)">Regular document</label>
+            <mat-slide-toggle
+              [(ngModel)]="complaintType"
+              (change)="toggleDocumentType(complaintType)"
+              name="documentType"
+              [color]="'primary'"></mat-slide-toggle>
+            <label (click)="toggleDocumentType(true)">Complaint</label>
+          </div>
+          
+          <mat-slide-toggle
+            [(ngModel)]="previewMode"
+            name="preview"
+            [color]="'primary'"
+          >Preview</mat-slide-toggle>
+        </div>
+      </div>
+      <div class="scrollable-section">
+        <div class="move-area"
+             *ngIf="document"
+             cdkDropList
+             #questionsList="cdkDropList"
+             [cdkDropListData]="formObj"
+             [cdkDropListDisabled]="previewMode"
+             (cdkDropListDropped)="dropQuestion($event)">
+          <mat-card class="question"
+                    cdkDrag cdkDragLockAxis="y"
+                    cdkDragBoundary=".move-area"
+                    *ngFor="let question of document.questions; let index = index"
+                    [ngClass]="{'previewMode': previewMode,
+                          'deleted': question.delete,
+                          'required': question.required}">
+            <i *ngIf="!previewMode" class="icon icon-move" cdkDragHandle></i>
+            <i *ngIf="!previewMode" class="icon icon-close"
+               (click)="onRemoveQuestion(index);$event.stopPropagation()"></i>
+            <div class="question__body">
+              <mat-form-field [ngClass]="{'previewMode': previewMode}">
+                <span class="number">{{getQuestionIndex(index)}}.</span>
+                <label class="question__label"
+                  [ngClass]="{'no-question': !question.questionText}"
+                >{{question.questionText || 'No question'}}</label>
+                <input class="question__main"
+                       required
+                       ngModel maxlength="500"
+                       matInput placeholder="Enter your question"
+                       [ngModelOptions]="{standalone: true}"
+                       [(ngModel)]="question.questionText"/>
+              </mat-form-field>
+              <app-question-body
+                [questions]="question.answers"
+                [type]="question.type"
+                [questionIndex]="index"
+                [previewMode]="previewMode"
+                (onRemoveAnswer)="onRemoveAnswer($event)"
+              ></app-question-body>
+              <mat-slide-toggle
+                *ngIf="!previewMode"
+                class="required-toggle"
+                [(ngModel)]="question.required"
+                name="{{'required' + index}}"
+                [color]="'blueLight'"
+              >Required
+              </mat-slide-toggle>
+            </div>
+            <div class="question__type">
+              <i class="icon icon-{{getFormItemByType(question.type).icon}}"></i>
+              <p>{{getFormItemByType(question.type).text}}</p>
+            </div>
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          </mat-card>
+        </div>
+
+        <div
+          *ngIf="!previewMode"
+          class="question question__add"
+          cdkDropList
+          #newOneList="cdkDropList"
+          [cdkDropListConnectedTo]="[questionTypesList]"
+          (cdkDropListDropped)="drop($event)">
+          <label for="">
+            Drag a new question
+          </label>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="question__types">
+
+      <div class="buttons-group">
+        <button class="login-padding assign"
+                mat-raised-button color="accentLight"
+                type="button"
+                (click)="redirectToDocuments()"
+        >Cancel</button>
+        <button class="save-button"
+                mat-raised-button color="primary"
+                (click)="saveDocument()"
+                [disabled]="isSaveDisabled()"
+        >Save document</button>
+        <button class="save-button"
+                mat-raised-button color="primary"
+                (click)="publishDocument()"
+                [disabled]="getPublishDisabled()"
+        >Publish</button>
+      </div>
+      <div
+        class="question__types__wrapper"
+        cdkDropList
+        #questionTypesList="cdkDropList"
+        [cdkDropListData]="questionTypes"
+        [cdkDropListDisabled]="previewMode"
+        [cdkDropListConnectedTo]="[newOneList, questionsList]"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card
+          cdkDrag
+          class="question__types__wrapper__item"
+          *ngFor="let item of questionTypes"
+        >
+          <i class="icon icon-custom icon-{{ item.icon }}"></i>
+          <i class="icon icon-move"></i>
+          <label>{{ item.text }}</label>
+        </mat-card>
+      </div>
+    </div>
+  </form>
+</div>

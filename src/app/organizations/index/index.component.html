@@ -1,0 +1,35 @@
+<div class="content-header">
+  <i class="icon icon-search"></i>
+  <mat-form-field class="example-full-width">
+    <input (keyup)="organizationTerm$.next($event.target.value)"  matInput placeholder="Search organizations">
+  </mat-form-field>
+</div>
+<div class="content-wrapper">
+  <div class="organizations">
+    <div class="organizations-tabs border">
+      <div class="organizations-tabs-content">
+        <h5 class="title">Organizations</h5>
+        <div class="organizations-tabs-content-item">
+          <app-organization
+            *ngFor="let organization of organizationsList"
+            (editOrg)="editOrganizations($event)"
+            (deleteOrg)="deleteOrganizations($event)"
+            [organization]="organization"
+          ></app-organization>
+        </div>
+      </div>
+      <mat-paginator *ngIf="organizationsList" 
+        [length]="organizationsLength"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="getOrganizationsList(searchOrganization, $event.pageIndex, $event.pageSize)">
+      </mat-paginator>
+    </div>
+    <app-create
+      class="border"
+      (createNew)="openCreateOrganizationDialog($event)"
+      [actionName]="actionName"
+    ></app-create>
+  </div>
+</div>

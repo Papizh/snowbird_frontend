@@ -1,0 +1,65 @@
+@import "../../../assets/styles/variables";
+.organizations {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  &-tabs {
+    position: relative;
+    width: 80%;
+    display: flex;
+    padding: 20px;
+    height: 75vh;
+    flex-direction: column;
+    justify-content: space-between;
+    &-content{
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      height: 70vh;
+      overflow-x: hidden;
+      &-item{
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+    &-wrapper {
+      position: absolute;
+      width: 60%;
+      min-width: 380px;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      right: 0;
+      align-items: center;
+      margin-right: 20px;
+    }
+  }
+  &-list{
+    padding: 10px;
+    &-title{
+      font-size: 18px;
+      color: $inactiveColor;
+      font-weight: 200;
+      margin: 10px 0;
+    }
+  }
+  &-create {
+    width: 18%;
+    min-width: 200px;
+    margin-left: 10px;
+  }
+}
+.mat-tab-group.mat-tab-group-dynamic-height .mat-tab-body.mat-tab-body-active{
+  margin-top: 50px;
+}
+mat-form-field{
+  min-width: 300px;
+}
+mat-tab-group{
+  width: 100%;
+}

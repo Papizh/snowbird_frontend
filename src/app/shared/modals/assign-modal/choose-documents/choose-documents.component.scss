@@ -1,0 +1,37 @@
+@import "~src/assets/styles/variables";
+
+.content-header{
+  .assign-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mat-form-field{
+      width: 60%;
+    }
+    button{
+      border: none;
+      background: none;
+    }
+  }
+}
+.documents-list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.btn-group{
+  text-align: right;
+  padding: 5px 15px 15px;
+  .assign-btn{
+    border-radius: 20px;
+    margin: 0px 5px;
+    padding: 0 50px;
+    cursor: pointer;
+  }
+}
+.display-none{
+  display: none;
+}

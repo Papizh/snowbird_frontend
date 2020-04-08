@@ -1,0 +1,28 @@
+@import "~src/assets/styles/variables";
+
+.assign-name{
+    padding: 130px 50px 160px;
+    position: relative;
+    label{
+        margin: 5px 0px 30px;
+        display: block;
+        color: $main-color;
+    }
+    mat-form-field{
+        font-weight: bold;
+        width: 80%;
+    }
+    .btn-group{
+        text-align: right;
+        padding: 5px 15px 15px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        .assign-btn{
+            border-radius: 20px;
+            padding: 0 50px;
+            cursor: pointer;
+        }
+    }
+}

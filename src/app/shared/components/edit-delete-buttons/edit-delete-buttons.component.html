@@ -1,0 +1,13 @@
+<div class="buttons">
+  <span
+    *ngIf="edit"
+    class="edit"
+    (click)="editItem($event)"
+  ></span>
+  <span
+    *ngIf="delete"
+    class="delete"
+    (click)="deleteItem($event)"
+  ></span>
+</div>
+

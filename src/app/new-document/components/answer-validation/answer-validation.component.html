@@ -1,0 +1,52 @@
+<div class="answer-validation" *ngIf="fieldValidation">
+  <mat-form-field *ngIf="fieldValidation.fieldType !== TEXT_FIELD.UPLOAD_FILE_FIELD">
+    <input matInput
+      required
+      placeholder="{{getPlaceholder('Min')}}" type="number"
+      (change)="emitChanges('min')"
+      [ngModel]="fieldValidation.min | noIncorrectValue : minIncorrect"
+      (ngModelChange)="fieldValidation.min=$event"
+      name="Min length"/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           required
+           placeholder="{{getPlaceholder('Max')}}" type="number"
+           (change)="emitChanges('max')"
+           [ngModel]="fieldValidation.max | noIncorrectValue: maxIncorrect"
+           (ngModelChange)="fieldValidation.max=$event"
+           name="Max length"/>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="fieldValidation.fieldType !== TEXT_FIELD.UPLOAD_FILE_FIELD">
+    <mat-select placeholder="Choose type" [(ngModel)]="fieldValidation.fieldType">
+      <mat-option *ngFor="let type of fieldTypes" [value]="type.type">
+        {{type.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="file-upload-config" *ngIf="fieldValidation.fieldType === TEXT_FIELD.UPLOAD_FILE_FIELD">
+    <mat-form-field>
+      <input matInput
+             minlength="1"
+             required
+             min="1"
+             (change)="emitChanges()"
+             placeholder="Max size (Mb)" type="number"
+             [ngModel]="fieldValidation.maxSizeOfFile | noIncorrectValue: ['zero', 'negative']"
+             (ngModelChange)="fieldValidation.maxSizeOfFile=$event"
+             name="Max size"/>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-select placeholder="Formats"
+        [formControl]="formats" multiple
+        (selectionChange)="selectionChange(formats.value)">
+        <mat-option *ngFor="let format of defaultModuleFormats" [value]="format">{{format}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>

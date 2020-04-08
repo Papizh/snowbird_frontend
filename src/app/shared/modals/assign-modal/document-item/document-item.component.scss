@@ -1,0 +1,24 @@
+.document{
+    position: relative;
+    width: 85px;
+    margin: 10px 15px;
+    padding-top: 10px;
+    text-align: center;
+    cursor: pointer;
+    &-item{
+        width: 93%;
+        height: 100%;
+        padding-top: 20px;
+    }
+    &-checked{
+        position: absolute;
+        top: 2px;
+        right: -3px;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 2px 9px;
+        line-height: 1.4;
+        color: #1565c0;
+        background: #dff0fe;
+    }
+  }

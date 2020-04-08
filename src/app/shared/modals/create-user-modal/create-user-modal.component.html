@@ -1,0 +1,46 @@
+<div class="container">
+  <form [formGroup]="inviteUserForm" class="invite">
+    <button mat-dialog-close>
+      <i class="icon icon-close"></i>
+    </button>
+    <span class="invite-name">Invite New User</span>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email address</mat-label>
+      <input
+        formControlName="email"
+        matInput placeholder="Email address">
+      <mat-error *ngIf="inviteUserForm.get('email').touched && inviteUserForm.get('email').hasError('required')"
+      >This field is <strong>required</strong></mat-error>
+      <mat-error *ngIf="inviteUserForm.get('email').touched && inviteUserForm.get('email').hasError('pattern')"
+      >Please enter a valid email address</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        formControlName="formRole"
+        placeholder="User role"
+        (selectionChange)="roleChange()"
+        disableRipple>
+        <mat-option  *appHasRole="['ROLE_ADMINISTRATOR']" value="ADMINISTRATOR">Administrator</mat-option>
+        <mat-option value="ORGANIZATION_MODERATOR">Organization moderator</mat-option>
+        <mat-option value="SIMPLE_USER">Simple user</mat-option>
+      </mat-select>
+      <mat-error *ngIf="inviteUserForm.get('formRole').touched && inviteUserForm.get('formRole').invalid">This field is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <div *appHasRole="['ROLE_ADMINISTRATOR']"  class="example-full-width">
+    <mat-form-field  class="example-full-width"
+      *ngIf="inviteUserForm.get('formRole').value != 'ADMINISTRATOR'">
+        <input  matInput placeholder="Organization"
+          aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="select($event)" [displayWith]="displayFn">
+          <mat-option *ngFor="let org of filteredStates" [value]="org">
+            <span>{{org.name}}</span>
+          </mat-option>
+          <mat-option class="no-clickable" *ngIf="!filteredStates?.length"
+          >Enter valid organization name</mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    </div>
+    <button class="assign-btn" [disabled]="disableSave()" (click)="createInvite()" mat-raised-button color="primary">Invite</button>
+  </form>
+</div>

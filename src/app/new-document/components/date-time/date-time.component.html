@@ -1,0 +1,26 @@
+<div class="DateTime"
+  [ngClass]="{'previewMode': previewMode}">
+  <mat-form-field>
+    <label class="pos-abs" *ngIf="!monthFormatMode">{{answers[0].text | date:'d/M/yy'}}</label>
+    <label class="pos-abs" *ngIf="monthFormatMode">{{answers[0].text | date:'M/d/yy'}}</label>
+    <input matInput [matDatepicker]="picker"
+          [disabled]="!previewMode" placeholder="Choose a date"
+          [(ngModel)]="answers[0].text" name="datepicker"
+          (dateChange)="trackValid()">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div class="date-time">
+    <label [ngClass]="{'bold': !monthFormatMode}"
+          (click)="monthFormatMode = false;getPattern()">DD/MM/YYYY</label>
+    <mat-slide-toggle
+      class="pattern"
+      [(ngModel)]="monthFormatMode"
+      (change)="getPattern()"
+      name="dateToggle"
+      [color]="'primary'"
+    ></mat-slide-toggle>
+    <label [ngClass]="{'bold': monthFormatMode}"
+          (click)="monthFormatMode = true;getPattern()">MM/DD/YYYY</label>
+  </div>
+</div>

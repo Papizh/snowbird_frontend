@@ -1,0 +1,37 @@
+<div class="wrapper" *ngIf="user">
+  <div class="content-wrapper no-header">
+    <div class="user border">
+      <i class="icon icon-back" *ngIf="!isSimpleUser()"
+         [routerLink]="['/main/users']"
+      ></i>
+      <div class="user-info">
+        <div class="user-info-avatar">
+          <img src="/assets/icons/person.jpg" alt="user">
+          <span class="title">{{user.firstName + ' ' + user.lastName}}</span>
+        </div>
+        <div class="user-info-details">
+          <p>Email: <span>{{user.email}}</span></p> 
+          <p>Organization: <span>{{user.organizationName}}</span></p>
+          <p>Phone: <span>{{user.phoneNumber}}</span></p>
+          <label class="sub-title {{user.userRole | lowercase}}" 
+            *ngIf="isUserAdminOrModerator()">
+            {{user.userRole === 'ORGANIZATION_MODERATOR' ? 'Moderator' : 'Administrator'}}
+          </label>
+        </div>
+      </div>
+      <button mat-raised-button color="primary" 
+        [ngClass]="{'hide-if-user-admin': isUserAdminOrModerator()}"
+        *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']" 
+        (click)="openDialog(user.position)"
+      >Assign Document</button>
+    </div>
+    <div class="documents" 
+      [ngClass]="{'hide-if-user-admin': isUserAdminOrModerator()}"
+      *appHasRole="['ROLE_ADMINISTRATOR', 'ROLE_ORGANIZATION_MODERATOR']">
+      <app-user-page-document 
+        *ngIf="!reloadOnAssigning"
+        [isUserAdmin]="isUserAdminOrModerator()"
+      ></app-user-page-document>
+    </div>  
+  </div>
+</div>

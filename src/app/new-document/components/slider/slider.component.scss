@@ -1,0 +1,29 @@
+.Slider{
+  .slider-config{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    mat-form-field{
+      max-width: 30%;
+    }
+  }
+  mat-slider{
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    /deep/ {
+      .mat-slider-thumb{
+        transform: scale(0);
+        border-width: 2px;
+      }
+      .mat-slider-thumb-label{
+        background-color: #bdbdbd;
+        transform: rotate(45deg);
+        border-radius: 50% 50% 0;
+        .mat-slider-thumb-label-text{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

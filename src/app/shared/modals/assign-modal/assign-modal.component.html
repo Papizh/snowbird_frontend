@@ -1,0 +1,40 @@
+<ng-container
+  [ngSwitch]="step">
+
+  <app-assign-name
+    [assignmentName]="assignmentName"
+    (onConfirmName)="onZeroStep($event)"
+    *ngSwitchCase="0"
+    [onlyAssign]="onlyAssign"
+  ></app-assign-name>
+
+  <app-choose-users
+    (chosenUsersList)="onFirstStep($event)"
+    (loadNextPage)="getMoreUser($event)"
+    (onUsersSearch)="getUsersByName($event)"
+    (previousStep)="previousStep($event)"
+    [usersList]="assignmentUsers"
+    *ngSwitchCase="1"
+  ></app-choose-users>
+
+  <app-choose-documents
+    (assignedDocumentList)="onSecondStep($event)"
+    (loadNextPage)="getMoreDocuments($event, true)"
+    (onDocumentsSearch)="getDocumentsByName($event, false)"
+    (previousStep)="previousStep($event)"
+    *ngSwitchCase="2"
+    [documentsList]="assignmentDocuments"
+  ></app-choose-documents>
+
+  <app-confirm-assigning
+    [assignmentName]="assignmentName"
+    [usersList]="assignmentChoosenUsers"
+    [documentsList]="assignmentChoosenDocuments"
+    [onlyAssign]="onlyAssign"
+    (previousStep)="previousStep($event)"
+    *ngSwitchCase="3"
+    (onConfirmAssigning)="confirmingAssigning($event)"
+  ></app-confirm-assigning>
+
+</ng-container>
+

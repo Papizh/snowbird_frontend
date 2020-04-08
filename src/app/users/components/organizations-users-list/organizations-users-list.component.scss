@@ -1,0 +1,96 @@
+@import "../../../../assets/styles/variables";
+
+.organizations{
+  display: flex;
+  flex-direction: column;
+  &-items:first-child{
+    margin-top: 0;
+  }
+  &-items{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    &.one-item{
+      min-height: calc(46vh - 92px);
+      justify-content: space-between;
+    }
+    &.border:hover{
+      box-shadow: 
+        0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+        0px 15px 0px 0px rgba(0, 0, 0, 0);
+    }
+    &-user{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .no-users{
+        width: 100%;
+        text-align: center;
+        padding: 20px 50px;
+        color: rgb(194, 194, 194);
+        font-weight: bold;
+        font-size: 0.8em;
+      }
+      app-user-item{
+        width: 130px;
+      }
+      .show-more{
+        border: 2px dashed rgb(196, 196, 196);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        margin: 20px 2px;
+        max-width: 130px;
+        padding-bottom: 15px;
+        transition: background-color 0.3s ease;
+        &:hover{
+          background-color: rgb(235, 236, 236);
+        }
+        mat-icon{
+          padding-bottom: 0px;
+          width: 115px;
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+.organizations-items-user /deep/ mat-card {
+  box-shadow: none;
+  background: none;
+}
+.organizations-items-user /deep/ .mat-card-image {
+  margin-bottom: 0;
+}
+
+mat-card{
+  cursor: pointer;
+  img{
+    border-radius: 50%;
+    width: 110px;
+    padding: 0px;
+    height: 110px;
+  }
+}
+mat-icon{
+  padding-bottom: 30px;
+  width: 130px;
+  height: 119px;
+  &:hover{
+    fill: $main-color;
+  }
+}
+mat-card-content{
+  text-align: center;
+  color: $inactiveColor;
+  font-size: 20px;
+}
+mat-form-field{
+  margin-top: 10px;
+  width: 50%;
+  min-width: 300px;
+}

@@ -1,0 +1,36 @@
+//@import 'src/styles/main.scss';
+@import "../../../../assets/styles/variables";
+
+
+/deep/ {
+  .color0 {
+    fill: $main-color;
+  }
+
+  .color1 {
+    fill: #b2d0f7;
+    stroke: #fff;
+    stroke-width: 0;
+  }
+
+  text {
+    font-size: 0.9em;
+    fill: #5a5a5a;
+  }
+}
+.d3-neutral{
+  background: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 2px 5px 20px #c4c4c4;
+  height: 50px;
+  width: 50px;
+  font-weight: bold;
+  font-size: 15px;
+  transform: scale(0.9);
+}
+
+
+// border-color: #f1a128;
+// border-color: #56bae6;
+// border-color: #314150;

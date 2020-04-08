@@ -1,0 +1,25 @@
+<div class="Dropdown">
+  <i *ngIf="!previewMode" class="icon icon-dropdown"></i>
+  <div class="dropdown-config" *ngIf="!previewMode">
+    <mat-form-field *ngFor="let item of questions; let index = index"
+      [ngClass]="{'deleted': item.delete}">
+      <input matInput 
+        placeholder="Enter a dropdown option"
+        [(ngModel)]="item.answerText" 
+        [name]="'drop' + index"
+        (focus)="onFocus(index, questions)">
+      <i class="icon icon-close"
+        *ngIf="questions.length > 1" 
+        (click)="onRemove.emit(index);$event.stopPropagation()"></i>
+    </mat-form-field>
+  </div>     
+  <mat-form-field *ngIf="previewMode">
+    <mat-select placeholder="Select option" 
+      (selectionChange)="selectionChange()"
+      [(ngModel)]="activeDropdown">
+      <mat-option *ngFor="let item of questions" [value]="item.answerText">
+        {{item.answerText}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

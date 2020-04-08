@@ -1,0 +1,77 @@
+/deep/  {
+    .mat-form-field-wrapper {
+        padding-bottom: 1em;
+    }
+    .mat-form-field-underline{
+        position: static;
+    }
+
+    .mat-form-field-infix{
+        padding: 0.4375em 0;
+    }
+}
+.multiple-config{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    margin-left: 25px;
+    .row-label{
+        width: 33%;
+        textarea{
+            color: rgba(0, 0, 0, 0.9);
+        }
+    }
+    .grey-section{
+        width: 66%;
+    }
+    mat-radio-button, mat-checkbox{
+        position: absolute;
+        left: -28px;
+        top: 8px;
+        transform: scale(0.9);
+    }
+    mat-checkbox{
+        left: -26px;
+        top: 8px;
+    }
+    mat-form-field{
+        margin-top: -5px;
+        &:hover{
+            .icon-close{
+                opacity: 0.6;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .icon-close{
+            z-index: 10;
+            position: absolute;
+            left: -46px;
+            top: 4px;
+            opacity: 0;
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+        }
+    }
+    &.previewMode {
+        i.icon.icon-close {
+            visibility: hidden;
+        }
+        .row-label{
+            /deep/ {
+                .mat-form-field-label{
+                    opacity: 0.5;
+                    &:not(.mat-empty){
+                        display: none;
+                    }
+                }
+            }
+        }
+        mat-form-field{
+            font-size: 0.8em;
+        }
+    }
+}

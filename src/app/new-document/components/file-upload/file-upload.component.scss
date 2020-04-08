@@ -1,0 +1,120 @@
+.FileUpload{
+    /deep/ {
+        .container {
+            border: 2px dashed #efefef;
+            position: relative;
+            // opacity: 0.7;
+            // pointer-events: none;
+        }
+        label.btn-primary{
+            font-size: 0.8em;
+            margin: 0 5px;
+            padding: 5px 13px;
+            background: #f3f3f3;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+            &:hover{
+                background: #ebebeb;
+            }
+        }
+        button {
+            margin: 2px 10px;
+            border: none;
+            background: none;
+            color: #555;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            font-weight: bold;
+            &:hover{
+                color: #111;
+            }
+            &.afu-upload-btn{
+                border-radius: 17px;
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+                background: #3d78c8;
+                padding: 9px 21px;
+                color: #fff;    
+                &:before{
+                    content: 'c';
+                    font-family: "Icons";
+                    margin-right: 5px;
+                }
+                &[disabled], &:disabled{
+                    filter: grayscale(100%);
+                    opacity: 0.3;
+                    pointer-events: none;
+                    cursor: not-allowed;
+                }
+            }
+        }
+        .row.afu-valid-file{
+            border-radius: 15px;
+            padding: 3px 10px;
+            font-size: 0.8em;
+            margin: 20px 5px;
+            background: #f5f5f5;
+            position: relative;
+        }
+        .constraints-info{
+            font-size: 0.6em;
+            color: #999;
+            margin: 0;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            text-align: right;
+            width: 217px;
+            word-break: break-all;
+        }
+        .fa-times{
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            position: absolute;
+            display: inline-block;
+            right: 7px;
+            z-index: 2;
+            top: 50%;
+            opacity: 0.8;
+            transform: translateY(-50%);
+            background: url('/assets/icons/close.png') no-repeat;
+            background-size: cover;
+        }
+    }
+    .pass-mode{
+        ul > li{
+            font-size: 0.8em;
+            margin: 4px 0px;
+            list-style-type: none;
+            .list-item{
+                background: rgb(219, 219, 219);
+                border-radius: 27px;
+                width: 400px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin: 0px 3px;
+                padding: 4px 12px 7px;
+                cursor: pointer;
+                color: #222;
+                transition: all 0.3s ease-in-out;
+                display: inline-block;
+                pointer-events: all!important;
+                &:hover{
+                    color: rgb(0, 0, 0);
+                    background: rgb(197, 197, 197);
+                }
+                .icon{
+                    opacity: 0.8;
+                    margin-right: 10px;
+                    position: relative;
+                    top: 2px;
+                    left: 1px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<div class="assign-name">
+  <label>Please enter a name for that assignment</label>
+  <mat-form-field>
+    <input matInput
+      placeholder="Assignment name"
+      [(ngModel)]="assignmentName" 
+      name="assignmentName"/>
+  </mat-form-field>  
+  <div class="btn-group">
+    <button class="assign-btn" 
+      (click)="nextStep()" 
+      [disabled]="isDisabled()"
+      mat-raised-button color="primary"
+    >Next step</button>
+  </div>
+</div>

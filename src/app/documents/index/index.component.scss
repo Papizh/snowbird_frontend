@@ -1,0 +1,36 @@
+@import "../../../assets/styles/variables";
+.documents {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  &-tabs {
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 75vh;
+    &-wrapper {
+      overflow: auto;
+      height: 70vh;
+    }
+  }
+  &-list{
+    padding: 10px;
+  }
+  &-create {
+    width: 18%;
+    min-width: 200px;
+    margin-left: 10px;
+  }
+}
+.mat-tab-group.mat-tab-group-dynamic-height .mat-tab-body.mat-tab-body-active{
+  margin-top: 50px;
+}
+
+mat-tab-group{
+  width: 100%;
+}

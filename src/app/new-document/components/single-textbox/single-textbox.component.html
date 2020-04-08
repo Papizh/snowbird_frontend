@@ -1,0 +1,14 @@
+<div class="SingleTextbox">
+  <app-answer-validation 
+    [fieldValidation]="questions[0].fieldValidation"
+    [validate]="answers[0].text"
+    (onValid)="trackValid($event)"
+  ></app-answer-validation>
+  <mat-form-field class="grey-section">
+    <input matInput
+      [ngClass]="{'invalid-field': !questions[0].valid,
+                  'previewMode': previewMode}"
+      [disabled]="!previewMode" placeholder="Your answer"
+      [(ngModel)]="answers[0].text" name="answer"/>
+  </mat-form-field>
+</div>

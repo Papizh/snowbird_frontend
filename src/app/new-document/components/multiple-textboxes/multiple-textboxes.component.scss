@@ -1,0 +1,56 @@
+/deep/  {
+    .mat-form-field-infix{
+        padding: 0.4375em 0 0.2em;
+    }
+    .mat-form-field-wrapper {
+        padding-bottom: 1em;
+    }
+    .mat-form-field-underline{
+        position: static;
+    }
+}
+.multiple-config{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    app-answer-validation{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }    
+    .row-label{
+        width: 33%;
+        textarea{
+            color: rgba(0, 0, 0, 0.8);
+            font-style: italic;
+            font-weight: 600;
+        }
+    }
+    .grey-section{
+        width: 66%;
+    }
+    mat-form-field{
+        position: relative;
+        margin-top: -5px;
+        &:hover{
+            .icon-close{
+                opacity: 0.6;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .icon-close{
+            z-index: 10;
+            position: absolute;
+            left: -24px;
+            top: 4px;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+        }
+    }
+}

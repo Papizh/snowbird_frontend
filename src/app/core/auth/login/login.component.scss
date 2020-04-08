@@ -1,0 +1,33 @@
+
+.login {
+  &-container {
+    max-width: 500px;
+    margin: 200px auto 0;
+  }
+
+  &-title {
+    justify-content: center;
+  }
+
+  &-inputs {
+    width: 80%;
+    margin: 0 auto;
+  }
+  &-button{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  &-padding{
+    padding: 0 50px;
+  }
+}
+
+.width-100 {
+  width: 100%;
+}
+.mat-card-header .mat-card-title{
+  margin: 20px 0 30px;
+  font-size: 25px;
+}
+

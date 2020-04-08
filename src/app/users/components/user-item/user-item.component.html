@@ -1,0 +1,24 @@
+<div
+  class="user-item"
+  [ngClass]="{'admin': user.userRole === 'ADMINISTRATOR' || user.userRole === 'ORGANIZATION_MODERATOR'}">
+  <app-edit-delete-buttons
+    [edit]="false"
+    [delete]="true"
+    (editEmitter)="editUser(user)"
+    (deleteEmitter)="deleteUserItem(user)"
+  ></app-edit-delete-buttons>
+  <div
+    [routerLink]="['/main/users/', user.id]">
+    <img [src]="'assets/icons/person.jpg'">
+    <label class="titleName" [title]="user.firstName + ' ' + user.lastName">
+      {{user.firstName + ' ' + user.lastName}}
+    </label>
+    <label class="sub-title" *ngIf="user.organizationName">
+      {{user.organizationName}}
+    </label>
+    <label class="sub-title admin-role {{user.userRole | lowercase}}">
+      {{user.userRole === 'ORGANIZATION_MODERATOR' ? 'Moderator' : 'Administrator'}}
+    </label>
+    <label class="abbr">{{user.firstName[0] + ' ' + user.lastName[0]}}</label>
+  </div>
+</div>
